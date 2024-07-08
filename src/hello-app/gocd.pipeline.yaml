@@ -19,9 +19,9 @@ pipelines:
           - name: Compile
             tasks:
               - exec:
-                  command: sh
-                  arguments: ["build.sh"]
-                  working_directory: "C:\\Program Files (x86)\\Go Agent\\pipelines\\Hello-Test-App\\src\\hello-app"
+                  command: "C:\\Program Files\\Git\\bin\\bash.exe"
+                  arguments: ["-c", "./build.sh"]
+                  working_directory: "C:\\Program Files (x86)\\Go Agent\\pipelines\\Hello-Test-App"
       - name: Dockerize
         fetch_materials: true
         keep_artifacts: false

@@ -21,7 +21,7 @@ pipelines:
               - exec:
                   command: "C:\\Program Files\\Git\\bin\\bash.exe"
                   arguments: ["-c", "./build.sh"]
-                  working_directory: "C:\\Program Files (x86)\\Go Agent\\pipelines\\Hello-Test-App"
+                  working_directory: "src/hello-app"
       - name: Dockerize
         fetch_materials: true
         keep_artifacts: false
@@ -32,8 +32,8 @@ pipelines:
               - exec:
                   command: docker
                   arguments: ["build", "-t", "my-golang-app", "."]
-                  working_directory: "C:\\Program Files (x86)\\Go Agent\\pipelines\\Hello-Test-App\\src\\hello-app"
+                  working_directory: "src/hello-app"
               - exec:
                   command: docker
                   arguments: ["run", "-d", "-p", "8080:8080", "my-golang-app"]
-                  working_directory: "C:\\Program Files (x86)\\Go Agent\\pipelines\\Hello-Test-App\\src\\hello-app"
+                  working_directory: "src/hello-app"

@@ -5,11 +5,11 @@ pipelines:
     label_template: ${COUNT}
     lock_behavior: none
     materials:
-      git:
-        url: https://github.com/htetgit/Hello-World-Test.git
-        branch: main
-        shallow_clone: false
-        auto_update: true
+      - git:
+          url: https://github.com/htetgit/Hello-World-Test.git
+          branch: main
+          shallow_clone: false
+          auto_update: true
     stages:
       - name: Build
         fetch_materials: true
@@ -21,19 +21,19 @@ pipelines:
               - exec:
                   command: go
                   arguments: ["version"]
-                  working_directory: "C:\Program Files (x86)\Go Agent\pipelines\Hello-World-Test\src\hello-app"
+                  working_directory: "C:\\Program Files (x86)\\Go Agent\\pipelines\\Hello-Test-App\\src\\hello-app"
               - exec:
                   command: go
                   arguments: ["env"]
-                  working_directory: "C:\Program Files (x86)\Go Agent\pipelines\Hello-World-Test\src\hello-app"
+                  working_directory: "C:\\Program Files (x86)\\Go Agent\\pipelines\\Hello-Test-App\\src\\hello-app"
               - exec:
                   command: go
                   arguments: ["mod", "tidy"]
-                  working_directory: "C:\Program Files (x86)\Go Agent\pipelines\Hello-World-Test\src\hello-app"
+                  working_directory: "C:\\Program Files (x86)\\Go Agent\\pipelines\\Hello-Test-App\\src\\hello-app"
               - exec:
                   command: go
-                  arguments: ["build", "-o", "main", "."]
-                  working_directory: "C:\Program Files (x86)\Go Agent\pipelines\Hello-World-Test\src\hello-app"
+                  arguments: ["build", "-o", "hello-world", "."]
+                  working_directory: "C:\\Program Files (x86)\\Go Agent\\pipelines\\Hello-Test-App\\src\\hello-app"
       - name: Dockerize
         fetch_materials: true
         keep_artifacts: false
@@ -44,9 +44,8 @@ pipelines:
               - exec:
                   command: docker
                   arguments: ["build", "-t", "my-golang-app", "."]
-                  working_directory: "C:\Program Files (x86)\Go Agent\pipelines\Hello-World-Test\src\hello-app"
+                  working_directory: "C:\\Program Files (x86)\\Go Agent\\pipelines\\Hello-Test-App\\src\\hello-app"
               - exec:
                   command: docker
                   arguments: ["run", "-d", "-p", "8080:8080", "my-golang-app"]
-                  working_directory: "C:\Program Files (x86)\Go Agent\pipelines\Hello-World-Test\src\hello-app"
-
+                  working_directory: "C:\\Program Files (x86)\\Go Agent\\pipelines\\Hello-Test-App\\src\\hello-app"

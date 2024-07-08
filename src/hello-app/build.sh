@@ -1,11 +1,21 @@
 #!/bin/bash
 set -e
 
-cd "C:/Program Files (x86)/Go Agent/pipelines/Hello-Test-App/src/hello-app"
+cd "$(dirname "$0")"
 
 export GO111MODULE=on
 
+echo "Go Version:"
 go version
+
+echo "Go Environment:"
 go env
+
+echo "Go Mod Tidy:"
+go help mod tidy
+
+echo "Running go mod tidy..."
 go mod tidy
+
+echo "Building the application..."
 go build -o hello-world .
